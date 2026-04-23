@@ -1,0 +1,2 @@
+# kbot
+test kbot golang
