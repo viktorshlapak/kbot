@@ -1,5 +1,7 @@
-APP_NAME := kbot
-IMAGE_TAG := quay.io/viktorshlapak/kbot:v1.0.0
+APP_NAME=kbot
+IMAGE_TAG=quay.io/viktorshlapak/kbot:v1.0.0
+HOST_OS=$(shell go env GOOS)
+HOST_ARCH=$(shell go env GOARCH)
 
 .PHONY: linux arm macos windows image clean
 
@@ -16,7 +18,7 @@ windows:
 	GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o bin/$(APP_NAME)-windows-amd64.exe .
 
 image:
-	docker build -t $(IMAGE_TAG) .
+	docker build --build-arg TARGETOS=$(HOST_OS) --build-arg TARGETARCH=$(HOST_ARCH) -t $(IMAGE_TAG) .
 
 clean:
 	rm -rf bin

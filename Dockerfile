@@ -1,9 +1,7 @@
-# syntax=docker/dockerfile:1
-
 FROM quay.io/projectquay/golang:1.26 AS build
 
-ARG TARGETOS=linux
-ARG TARGETARCH=amd64
+ARG TARGETOS
+ARG TARGETARCH
 
 WORKDIR /app
 
